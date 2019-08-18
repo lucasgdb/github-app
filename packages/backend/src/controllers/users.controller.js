@@ -1,21 +1,21 @@
-const users = require('mongoose').model('users')
+const users = require('mongoose').model('users');
 
 module.exports = {
-    async createUser(req, res) {
-        const createdUser = await users.create(req.body)
+  async createUser(req, res) {
+    const createdUser = await users.create(req.body);
 
-        return res.status(201).json(createdUser)
-    },
+    return res.status(201).json(createdUser);
+  },
 
-    async getAllUsers(req, res) {
-        const returnedUsers = await users.find()
+  async getAllUsers(req, res) {
+    const returnedUsers = await users.find();
 
-        return res.status(200).json(returnedUsers)
-    },
+    return res.status(200).json(returnedUsers);
+  },
 
-    async deleteUser(req, res) {
-        await users.findByIdAndDelete(req.params._id)
+  async deleteUser(req, res) {
+    await users.findByIdAndDelete(req.params._id);
 
-        return res.status(204).json({})
-    }
-}
+    return res.status(204).json({});
+  },
+};

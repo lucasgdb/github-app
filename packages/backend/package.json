@@ -2,11 +2,11 @@
     "name": "@github-app/backend",
     "version": "1.0.0",
     "private": false,
-    "main": "index.js",
+    "main": "src/index.js",
     "license": "MIT",
     "scripts": {
         "prod:start": "node .",
-        "dev:start": "nodemon ."
+        "dev:start": "eslint src --fix && nodemon ."
     },
     "dependencies": {
         "cors": "^2.8.5",

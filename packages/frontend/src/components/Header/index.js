@@ -1,10 +1,8 @@
-import React from 'react'
-import './index.css'
+import React from 'react';
+import './index.css';
 
-const Header = React.memo(() =>
-    <header>
+const Header = React.memo(() => <header>
         GitHub App
-    </header>
-)
+    </header>);
 
-export default Header
+export default Header;
