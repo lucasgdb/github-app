@@ -6,6 +6,7 @@ const app = express()
 
 mongoose.connect('mongodb://localhost:27017/github-api', { useNewUrlParser: true })
 mongoose.set('useFindAndModify', false)
+mongoose.set('useCreateIndex', true)
 requireAll('./src/models')
 
 app.use(express.json())

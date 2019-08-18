@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": false,
     "proxy": "http://localhost:3001",
+    "license": "MIT",
     "dependencies": {
         "axios": "^0.19.0",
         "react": "^16.9.0",
@@ -13,8 +14,9 @@
         "@types/axios": "^0.14.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "dev:start": "react-scripts start",
+        "prod:build": "react-scripts build",
+        "prod:start": "serve -s build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },

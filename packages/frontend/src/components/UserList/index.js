@@ -23,7 +23,7 @@ export default class UserList extends React.Component {
     }
 
     onChange() {
-        this.setState({ login: this.txtLogin.current.value })
+        this.setState({ login: this.txtLogin['current']['value'] })
     }
 
     async getAllUsers() {
@@ -35,7 +35,7 @@ export default class UserList extends React.Component {
     async createUser() {
         this.txtLogin.current.value = ''
         const response = await github_api.get(this.state['login'])
-        await api.post('/users', response.data)
+        await api.post('/users', response['data'])
 
         this.getAllUsers()
     }
@@ -57,11 +57,11 @@ export default class UserList extends React.Component {
             <main onKeyUp={event => this.enterPressed(event)}>
                 <section className="add-user-list">
                     <div>
-                        <strong>Adicionar novo usuário</strong>
+                        <strong>Add a new user</strong>
 
-                        <input ref={this.txtLogin} defaultValue={this.state.login} onKeyUp={this.onChange} placeholder="Digite aqui o nome de usuário" type="text" name="login" />
+                        <input ref={this.txtLogin} defaultValue={this.state['login']} onKeyUp={this.onChange} placeholder="Type here the GitHub's username" type="text" name="login" />
 
-                        <button onClick={this.createUser} title="Adicionar">Adicionar usuário</button>
+                        <button onClick={this.createUser} title="Add a user">Add user</button>
                     </div>
                 </section>
 
@@ -69,12 +69,12 @@ export default class UserList extends React.Component {
                     {users.map(user => (
                         <article key={user['_id']}>
                             <div>
-                                <img src={user['avatar_url']} alt={user['name']} />
+                                <img title={`${user['name']} (${user['login']})`} src={user['avatar_url']} alt={user['name']} />
                                 <strong>{user['name']}</strong>
                             </div>
-                            <p>{user['bio'] ? user['bio'] : 'Este usuário não possui uma biografia!'}</p>
+                            <p>{user['bio'] ? user['bio'] : 'This user does not have a bio.'}</p>
 
-                            <button onClick={() => this.removeUser(`/users/${user['_id']}`)}>Remover</button>
+                            <button title="Remove this user" onClick={() => this.removeUser(`/users/${user['_id']}`)}>Remove</button>
                         </article>
                     ))}
                 </section>

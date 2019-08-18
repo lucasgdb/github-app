@@ -3,7 +3,6 @@ const userController = require('./controllers/users.controller')
 
 routes.post('/users', userController.createUser)
 routes.get('/users', userController.getAllUsers)
-routes.get('/users/:_id', userController.getUser)
 routes.delete('/users/:_id', userController.deleteUser)
 
 module.exports = routes
