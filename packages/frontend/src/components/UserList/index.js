@@ -1,84 +1,69 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import api, { github_api } from '../../services/api'
 import './index.css'
 
-export default class UserList extends React.Component {
-    constructor() {
-        super()
+const UserList = () => {
+    const [login, setLogin] = useState('')
+    const [users, setUsers] = useState([])
+    const txtLogin = useRef(null)
 
-        this.state = {
-            login: '',
-            users: []
-        }
+    useEffect(() => { getAllUsers() }, [])
 
-        this.txtLogin = React.createRef()
-        this.onChange = this.onChange.bind(this)
-        this.createUser = this.createUser.bind(this)
-        this.removeUser = this.removeUser.bind(this)
-        this.enterPressed = this.enterPressed.bind(this)
-    }
-
-    componentDidMount() {
-        this.getAllUsers()
-    }
-
-    onChange() {
-        this.setState({ login: this.txtLogin['current']['value'] })
-    }
-
-    async getAllUsers() {
+    async function getAllUsers() {
         const response = await api.get('/users')
 
-        this.setState({ users: response['data'] })
+        setUsers(response['data'])
     }
 
-    async createUser() {
-        this.txtLogin.current.value = ''
-        const response = await github_api.get(this.state['login'])
+    function onChange() {
+        setLogin(txtLogin['current']['value'])
+    }
+
+    async function createUser() {
+        txtLogin['current']['value'] = ''
+        const response = await github_api.get(login)
         await api.post('/users', response['data'])
 
-        this.getAllUsers()
+        getAllUsers()
     }
 
-    async removeUser(url) {
+    async function removeUser(url) {
         await api.delete(url)
 
-        this.getAllUsers()
+        getAllUsers()
     }
 
-    async enterPressed(event) {
-        if (event.keyCode === 13) this.createUser()
+    function enterPressed(event) {
+        if (event.keyCode === 13) createUser()
     }
 
-    render() {
-        const { users } = this.state
+    return (
+        <main onKeyUp={event => enterPressed(event)}>
+            <section className="add-user-list">
+                <div>
+                    <strong>Add a new user</strong>
 
-        return (
-            <main onKeyUp={event => this.enterPressed(event)}>
-                <section className="add-user-list">
-                    <div>
-                        <strong>Add a new user</strong>
+                    <input ref={txtLogin} defaultValue={login} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
 
-                        <input ref={this.txtLogin} defaultValue={this.state['login']} onKeyUp={this.onChange} placeholder="Type here the GitHub's username" type="text" name="login" />
+                    <button onClick={createUser} title="Add a user">Add user</button>
+                </div>
+            </section>
 
-                        <button onClick={this.createUser} title="Add a user">Add user</button>
-                    </div>
-                </section>
+            <section className="user-list">
+                {users.map(user => (
+                    <article key={user['_id']}>
+                        <div>
+                            <img title={`${user['name']} (${user['login']})`} src={user['avatar_url']} alt={user['name']} />
+                            <strong>{user['name']}</strong>
+                        </div>
+                        <p>{user['bio'] ? user['bio'] : 'This user does not have a bio.'}</p>
 
-                <section className="user-list">
-                    {users.map(user => (
-                        <article key={user['_id']}>
-                            <div>
-                                <img title={`${user['name']} (${user['login']})`} src={user['avatar_url']} alt={user['name']} />
-                                <strong>{user['name']}</strong>
-                            </div>
-                            <p>{user['bio'] ? user['bio'] : 'This user does not have a bio.'}</p>
-
-                            <button title="Remove this user" onClick={() => this.removeUser(`/users/${user['_id']}`)}>Remove</button>
-                        </article>
-                    ))}
-                </section>
-            </main>
-        )
-    }
+                        <button title="Remove this user" onClick={() => removeUser(`/users/${user['_id']}`)}>Remove</button>
+                    </article>
+                ))}
+            </section>
+        </main>
+    )
 }
+
+export default UserList

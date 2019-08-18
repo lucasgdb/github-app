@@ -1,12 +1,10 @@
 import React from 'react'
 import './index.css'
 
-export default class Header extends React.PureComponent {
-    render() {
-        return (
-            <header>
-                GitHub App
-            </header>
-        )
-    }
-}
+const Header = React.memo(() =>
+    <header>
+        GitHub App
+    </header>
+)
+
+export default Header
