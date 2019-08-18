@@ -1,0 +1,95 @@
+.user-list {
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 0 20px
+}
+
+.add-user-list {
+    width: 95%;
+    margin: 0 auto
+}
+
+.user-list,
+.add-user-list {
+    padding: 0 20px
+}
+
+.user-list article {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px
+}
+
+.user-list article,
+.add-user-list div {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px
+}
+
+.user-list article div {
+    display: flex;
+    align-items: center
+}
+
+.user-list article div strong {
+    margin-left: 10px
+}
+
+.user-list article img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.user-list article p {
+    font-size: 16px;
+    color: #999;
+    margin-top: 5px;
+    line-height: 24px;
+}
+
+.user-list article button,
+.add-user-list div button {
+    padding: 10px 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #da552f;
+    background: none;
+    margin-top: 10px;
+    color: #da552f;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background .2s
+}
+
+.user-list article button:hover,
+.add-user-list div button:hover {
+    background: #da552f;
+    color: #fff
+}
+
+.add-user-list strong {
+    display: flex;
+    justify-content: center
+}
+
+.add-user-list div input[type=text] {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid #da552f
+}
+
+@media (min-width: 993px) {
+    .add-user-list {
+        width: 70%
+    }
+}

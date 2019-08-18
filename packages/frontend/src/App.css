@@ -11,3 +11,13 @@ body {
     color: #333;
     min-width: 360px
 }
+
+#root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column
+}
+
+#root main {
+    flex: 1 0 auto;
+}

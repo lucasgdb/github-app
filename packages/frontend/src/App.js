@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './components/Header'
-import Main from './pages/main'
+import Main from './components/UserList'
+import Footer from './components/Footer'
+import './App.css'
 
 export default class App extends React.Component {
     render() {
@@ -8,6 +10,7 @@ export default class App extends React.Component {
             <>
                 <Header />
                 <Main />
+                <Footer />
             </>
         )
     }

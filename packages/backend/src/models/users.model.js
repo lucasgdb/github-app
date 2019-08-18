@@ -12,22 +12,22 @@ const defaultNumber = {
 }
 
 const userSchema = new Schema({
-    _login: defaultString,
-    _avatar_url: defaultString,
-    _url: defaultString,
-    _html_url: defaultString,
-    _type: defaultString,
-    _name: defaultString,
-    _company: defaultString,
-    _blog: defaultString,
-    _location: defaultString,
-    _email: String,
-    _bio: defaultString,
-    _public_repos: defaultNumber,
-    _public_gists: defaultNumber,
-    _followers: defaultNumber,
-    _following: defaultNumber,
-    _createdAt: {
+    login: { ...defaultString, unique: true },
+    avatar_url: defaultString,
+    url: defaultString,
+    html_url: defaultString,
+    type: defaultString,
+    name: defaultString,
+    company: String,
+    blog: String,
+    location: String,
+    email: String,
+    bio: String,
+    public_repos: defaultNumber,
+    public_gists: defaultNumber,
+    followers: defaultNumber,
+    following: defaultNumber,
+    createdAt: {
         type: Date,
         default: Date.now
     }

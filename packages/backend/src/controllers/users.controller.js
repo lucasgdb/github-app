@@ -17,5 +17,23 @@ module.exports = {
         const returnedUser = await users.findById(req.params._id)
 
         return res.status(200).json(returnedUser)
+    },
+
+    async updateAllUserData(req, res) {
+        const user = await users.findByIdAndUpdate(req.params._id, req.body, { new: true })
+
+        return res.status(200).json(user)
+    },
+
+    async updateSomeUserData(req, res) {
+        const user = await users.findByIdAndUpdate(req.params._id, req.body, { new: true })
+
+        return res.status(200).json(user)
+    },
+
+    async deleteUser(req, res) {
+        await users.findByIdAndDelete(req.params._id)
+
+        return res.status(204).json({})
     }
 }
