@@ -1,19 +1,19 @@
 footer {
-    height: 40px;
-    background: #da552f;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center
+  height: 40px;
+  background: #da552f;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 
 footer a {
-    color: #fff;
-    text-decoration: none
+  color: #fff;
+  text-decoration: none
 }
 
 footer a:hover {
-    text-decoration: underline
+  text-decoration: underline
 }

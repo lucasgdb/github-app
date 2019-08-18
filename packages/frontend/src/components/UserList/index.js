@@ -7,8 +7,6 @@ const UserList = () => {
   const [users, setUsers] = useState([]);
   const txtLogin = useRef(null);
 
-  useEffect(() => { getAllUsers(); }, []);
-
   async function getAllUsers() {
     const response = await api.get('/users');
 
@@ -37,32 +35,34 @@ const UserList = () => {
     if (event.keyCode === 13) createUser();
   }
 
+  useEffect(() => { getAllUsers(); }, []);
+
   return (
-        <main onKeyUp={(event) => enterPressed(event)}>
-            <section className="add-user-list">
-                <div>
-                    <strong>Add a new user</strong>
+    <main onKeyUp={(event) => enterPressed(event)}>
+      <section className="add-user-list">
+        <div>
+          <strong>Add a new user</strong>
 
-                    <input ref={txtLogin} defaultValue={login} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
+          <input ref={txtLogin} defaultValue={login} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
 
-                    <button onClick={createUser} title="Add a user">Add user</button>
-                </div>
-            </section>
+          <button onClick={createUser} title="Add a user">Add user</button>
+        </div>
+      </section>
 
-            <section className="user-list">
-                {users.map((user) => (
-                    <article key={user._id}>
-                        <div>
-                            <img title={`${user.name} (${user.login})`} src={user.avatar_url} alt={user.name} />
-                            <strong>{user.name}</strong>
-                        </div>
-                        <p>{user.bio ? user.bio : 'This user does not have a bio.'}</p>
+      <section className="user-list">
+        {users.map((user) => (
+          <article key={user._id}> {/* eslint-disable-line no-underscore-dangle */}
+            <div>
+              <img title={`${user.name} (${user.login})`} src={user.avatar_url} alt={user.name} />
+              <strong>{user.name}</strong>
+            </div>
+            <p>{user.bio ? user.bio : 'This user does not have a bio.'}</p>
 
-                        <button title="Remove this user" onClick={() => removeUser(`/users/${user._id}`)}>Remove</button>
-                    </article>
-                ))}
-            </section>
-        </main>
+            <button title="Remove this user" onClick={() => removeUser(`/users/${user._id}`)}>Remove</button> {/* eslint-disable-line no-underscore-dangle */}
+          </article>
+        ))}
+      </section>
+    </main>
   );
 };
 

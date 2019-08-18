@@ -14,7 +14,7 @@ module.exports = {
   },
 
   async deleteUser(req, res) {
-    await users.findByIdAndDelete(req.params._id);
+    await users.findByIdAndDelete(req.params._id); // eslint-disable-line no-underscore-dangle
 
     return res.status(204).json({});
   },

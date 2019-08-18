@@ -1,24 +1,24 @@
 {
-    "name": "@github-app/backend",
-    "version": "1.0.0",
-    "private": false,
-    "main": "src/index.js",
-    "license": "MIT",
-    "scripts": {
-        "prod:start": "node .",
-        "dev:start": "eslint src --fix && nodemon ."
-    },
-    "dependencies": {
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "mongoose": "^5.6.9",
-        "require-dir": "^1.2.0"
-    },
-    "devDependencies": {
-        "@types/cors": "^2.8.5",
-        "@types/express": "^4.17.0",
-        "@types/mongoose": "^5.5.12",
-        "@types/require-dir": "^1.0.0",
-        "nodemon": "^1.19.1"
-    }
+  "name": "@github-app/backend",
+  "version": "1.0.0",
+  "private": false,
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "prod:start": "node .",
+    "dev:start": "eslint src --fix && nodemon ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.9",
+    "require-dir": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "@types/mongoose": "^5.5.12",
+    "@types/require-dir": "^1.0.0",
+    "nodemon": "^1.19.1"
+  }
 }

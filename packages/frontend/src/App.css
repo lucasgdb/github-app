@@ -1,23 +1,23 @@
 * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fafafa;
-    color: #333;
-    min-width: 360px
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fafafa;
+  color: #333;
+  min-width: 360px
 }
 
 #root {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column
 }
 
 #root main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }

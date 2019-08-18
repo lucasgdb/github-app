@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
 
-const Header = React.memo(() => <header>
-        GitHub App
-    </header>);
+const Header = () => <header>
+  GitHub App
+</header>;
 
-export default Header;
+export default React.memo(Header);

@@ -15,4 +15,4 @@ app.use(express.json());
 app.use(cors());
 app.use('/api', require('./routes'));
 
-app.listen(3001, () => console.log('Server initialized on 3001'));
+app.listen(3001);
