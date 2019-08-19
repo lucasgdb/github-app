@@ -1,8 +1,7 @@
 {
   "name": "github-app",
   "version": "1.0.0",
-  "description": "An app for list user's repository of GitHub",
-  "main": "index.js",
+  "description": "An app for list the GitHub users with their information",
   "repository": "git@github.com:lucasnaja/github-app.git",
   "author": {
     "name": "Lucas Bittencourt",
