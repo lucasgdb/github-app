@@ -5,6 +5,7 @@ import './index.css';
 const UserList = () => {
   const [userName, setUserName] = useState('');
   const [users, setUsers] = useState([]);
+  const [adding, setAdding] = useState(false);
   const txtLogin = useRef(null);
 
   async function getAllUsers() {
@@ -19,28 +20,37 @@ const UserList = () => {
 
   async function createUser() {
     if (userName) {
-      const response = (await githubApi.get(userName)).data;
-      const {
-        login,
-        avatar_url: avatarURL,
-        html_url: htmlURL,
-        name,
-        bio,
-        public_repos: publicRepos,
-        followers,
-      } = response;
+      setAdding(true);
 
-      await api.post('/users', {
-        login,
-        avatar_url: avatarURL,
-        html_url: htmlURL,
-        name,
-        bio,
-        public_repos: publicRepos,
-        followers,
-      });
+      try {
+        const response = (await githubApi.get(userName)).data;
+        const {
+          login,
+          avatar_url: avatarURL,
+          html_url: htmlURL,
+          name,
+          bio,
+          public_repos: publicRepos,
+          followers,
+        } = response;
 
-      txtLogin.current.value = '';
+        await api.post('/users', {
+          login,
+          avatar_url: avatarURL,
+          html_url: htmlURL,
+          name,
+          bio,
+          public_repos: publicRepos,
+          followers,
+        });
+      } catch (err) {
+        console.log(err); // eslint-disable-line no-console
+      } finally {
+        setUserName('');
+        setAdding(false);
+
+        txtLogin.current.value = '';
+      }
 
       getAllUsers();
     }
@@ -64,9 +74,9 @@ const UserList = () => {
         <div>
           <strong>Add a new user</strong>
 
-          <input ref={txtLogin} defaultValue={userName} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
+          <input disabled={adding} ref={txtLogin} defaultValue={userName} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
 
-          <button onClick={createUser} title="Add a user">Add user</button>
+          <button disabled={adding} onClick={createUser} title={adding ? 'Adding...' : `Add ${userName || 'a user'}`}>Add user</button>
         </div>
       </section>
 
@@ -82,7 +92,7 @@ const UserList = () => {
             </div>
             <p>{user.bio ? user.bio : 'This user does not have a bio.'}</p>
 
-            <button title="Remove this user" onClick={() => removeUser(`/users/${user._id}`)}>Remove</button> {/* eslint-disable-line no-underscore-dangle */}
+            <button title={`Remove ${user.login}`} onClick={() => removeUser(`/users/${user._id}`)}>Remove</button> {/* eslint-disable-line no-underscore-dangle */}
           </article>
         ))}
       </section>

@@ -84,6 +84,21 @@
   transition: background .2s
 }
 
+.add-user-list div input[type=text]:disabled {
+  border-color: #333
+}
+
+.add-user-list div button:disabled {
+  background: rgb(235, 235, 235);
+  border-color: #333;
+  color: #333
+}
+
+.add-user-list div button:disabled:hover {
+  background: rgb(235, 235, 235);
+  color: #333
+}
+
 .user-list article button:hover,
 .add-user-list div button:hover {
   background: #da552f;
