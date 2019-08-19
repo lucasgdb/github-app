@@ -10,8 +10,7 @@
     "url": "https://twitter.com/lucasnaja"
   },
   "scripts": {
-    "dev:start": "concurrently --kill-others \"yarn workspace @github-app/backend dev:start\" \"yarn workspace @github-app/frontend dev:start\"",
-    "prod:start": "concurrently --kill-others \"yarn workspace @github-app/backend prod:start\" \"yarn workspace @github-app/frontend prod:build\" \"yarn workspace @github-app/frontend prod:start\""
+    "start": "concurrently --kill-others \"yarn workspace @github-app/backend start\" \"yarn workspace @github-app/frontend start\""
   },
   "license": "MIT",
   "private": true,

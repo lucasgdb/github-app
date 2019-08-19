@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "prod:start": "node .",
-    "dev:start": "eslint src --fix && nodemon ."
+    "start": "eslint src --fix && nodemon ."
   },
   "dependencies": {
     "cors": "^2.8.5",

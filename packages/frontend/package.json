@@ -14,9 +14,8 @@
     "@types/axios": "^0.14.0"
   },
   "scripts": {
-    "dev:start": "eslint src --fix && react-scripts start",
-    "prod:build": "react-scripts build",
-    "prod:start": "serve -s build",
+    "start": "eslint src --fix && react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

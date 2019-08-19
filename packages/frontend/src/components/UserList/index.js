@@ -18,11 +18,14 @@ const UserList = () => {
   }
 
   async function createUser() {
-    txtLogin.current.value = '';
-    const response = await githubApi.get(login);
-    await api.post('/users', response.data);
+    if (login) {
+      const response = await githubApi.get(login);
+      await api.post('/users', response.data);
 
-    getAllUsers();
+      txtLogin.current.value = '';
+
+      getAllUsers();
+    }
   }
 
   async function removeUser(url) {
@@ -53,8 +56,11 @@ const UserList = () => {
         {users.map((user) => (
           <article key={user._id}> {/* eslint-disable-line no-underscore-dangle */}
             <div>
-              <img title={`${user.name} (${user.login})`} src={user.avatar_url} alt={user.name} />
-              <strong>{user.name}</strong>
+              <a href={user.html_url} target="_blank" rel="noopener noreferrer nofollow">
+                <img title={`${user.name} (${user.login})`} src={user.avatar_url} alt={user.name} />
+                <strong>{user.name}</strong>
+              </a>
+              <small>{user.public_repos} repos and {user.followers} followers</small>
             </div>
             <p>{user.bio ? user.bio : 'This user does not have a bio.'}</p>
 

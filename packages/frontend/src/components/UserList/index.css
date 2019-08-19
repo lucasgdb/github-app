@@ -35,13 +35,28 @@
   align-items: center
 }
 
-.user-list article div strong {
+.user-list article div a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #333333
+}
+
+.user-list article div a:hover {
+  text-decoration: underline
+}
+
+.user-list article div a strong {
   margin-left: 10px
 }
 
-.user-list article img {
+.user-list article a img {
   width: 40px;
   border-radius: 50%;
+}
+
+.user-list article div small {
+  margin-left: 5px
 }
 
 .user-list article p {
