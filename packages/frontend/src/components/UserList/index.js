@@ -3,7 +3,7 @@ import api, { githubApi } from '../../services/api';
 import './index.css';
 
 const UserList = () => {
-  const [login, setLogin] = useState('');
+  const [userName, setUserName] = useState('');
   const [users, setUsers] = useState([]);
   const txtLogin = useRef(null);
 
@@ -14,13 +14,31 @@ const UserList = () => {
   }
 
   function onChange() {
-    setLogin(txtLogin.current.value);
+    setUserName(txtLogin.current.value);
   }
 
   async function createUser() {
-    if (login) {
-      const response = await githubApi.get(login);
-      await api.post('/users', response.data);
+    if (userName) {
+      const response = (await githubApi.get(userName)).data;
+      const {
+        login,
+        avatar_url: avatarURL,
+        html_url: htmlURL,
+        name,
+        bio,
+        public_repos: publicRepos,
+        followers,
+      } = response;
+
+      await api.post('/users', {
+        login,
+        avatar_url: avatarURL,
+        html_url: htmlURL,
+        name,
+        bio,
+        public_repos: publicRepos,
+        followers,
+      });
 
       txtLogin.current.value = '';
 
@@ -46,7 +64,7 @@ const UserList = () => {
         <div>
           <strong>Add a new user</strong>
 
-          <input ref={txtLogin} defaultValue={login} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
+          <input ref={txtLogin} defaultValue={userName} onKeyUp={onChange} placeholder="Type here the GitHub's username" type="text" />
 
           <button onClick={createUser} title="Add a user">Add user</button>
         </div>
