@@ -6,7 +6,7 @@ const userSchema = new Schema({
   login: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   avatar_url: String,
   html_url: String,
